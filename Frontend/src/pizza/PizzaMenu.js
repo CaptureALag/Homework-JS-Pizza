@@ -31,16 +31,40 @@ function showPizzaList(list) {
     list.forEach(showOnePizza);
 }
 
-function filterPizza(filter) {
+var pizzaCategories = {
+    "Усі": {
+        label: "Усі піци",
+        filter: function() { return true }
+    },
+    "Мясні": {
+        label: "Мясні піци",
+        filter: function(pizza) { return pizza.content.meat }
+    },
+    "З ананасами": {
+        label: "Піци з ананасами",
+        filter: function(pizza) { return pizza.content.pineapple }
+    },
+    "З грибами": {
+        label: "Піци з грибами",
+        filter: function(pizza) { return pizza.content.mushroom }
+    },
+    "З морепродуктами": {
+        label: "Піци з морепродуктами",
+        filter: function(pizza) { return pizza.content.ocean }
+    },
+    "Вега": {
+        label: "Вегетаріанські піци",
+        filter: function(pizza) { return pizza.type == 'Вега піца' }
+    }
+}
+
+function filterPizza(category) {
     //Масив куди потраплять піци які треба показати
-    var pizza_shown = [];
+    var pizza_shown = Pizza_List.filter(pizzaCategories[category].filter)
 
-    Pizza_List.forEach(function(pizza){
-        //Якщо піка відповідає фільтру
-        //pizza_shown.push(pizza);
-
-        //TODO: зробити фільтри
-    });
+    var header = $("#content > .header")
+    header.children('h5').html(pizzaCategories[category].label)
+    header.children('.badge').html(pizza_shown.length)
 
     //Показати відфільтровані піци
     showPizzaList(pizza_shown);

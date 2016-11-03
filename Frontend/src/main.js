@@ -11,5 +11,11 @@ $(function(){
     PizzaCart.initialiseCart();
     PizzaMenu.initialiseMenu();
 
-
+    $(".filters > li").click(function() {
+		$this = $(this)
+		$this.siblings().removeClass('active')
+		$this.addClass('active')
+		
+		PizzaMenu.filterPizza($this.children('a').html())
+	})
 });

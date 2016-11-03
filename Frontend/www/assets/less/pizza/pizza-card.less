@@ -1,0 +1,88 @@
+.pizza-card {
+	& > .thumbnail {
+		height: 550px;
+
+		@media screen and (max-width: 1200px) {
+			height: 580px;
+		}
+
+		@media screen and (max-width: 992px) {
+			height: 675px;
+		}
+
+		@media screen and (max-width: 768px) {
+			height: unset;
+		}
+	}
+
+	& > img {
+	    max-width: 250px;
+	}
+
+	.label {
+	    position: absolute;
+	    top: -8px;
+	    right: 7px;
+	    font-size: 18px;
+	}
+
+	.title {
+		color: #ec6a1c;
+		font-size: 30px;
+	}
+
+	.type {
+	    color: gray;
+    	font-size: 12px;
+	}
+
+	.description {
+		font-size: 14px;
+	    height: 65px;
+	    text-overflow: ellipsis;
+	    overflow: hidden;
+	}
+
+	.params {
+		text-align: center;
+		& > .param {
+			display: inline-block;
+			margin: 0 15px;
+
+			& > .size::before {
+			    content: "";
+			    display: inline-block;
+			    background: url('../images/size-icon.svg');
+			    background-repeat: no-repeat;
+			    height: 12px;
+			    width: 12px;
+			    position: relative;
+			    top: 1px;
+			}	
+
+			& > .weight::before {
+				content: "";
+			    display: inline-block;
+			    background: url('../images/weight.svg');
+			    background-repeat: no-repeat;
+			    height: 12px;
+			    width: 10px;
+			    position: relative;
+			    top: 1px;
+			}
+
+			& > .price {
+				margin-bottom: 8px;
+				& > h5 {
+				    margin: 0;
+				    margin-top: 7px;
+				    font-size: 32px;
+				}
+			}
+
+			@media screen and (max-width: 1200px) {
+				margin: 0 25px;
+			}
+		}
+	}
+}

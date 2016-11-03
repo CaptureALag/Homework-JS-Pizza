@@ -1,0 +1,88 @@
+ 
+#header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 330px;
+	z-index: 10;
+
+	background: rgba(0,0,0,.8);
+	color: white;
+
+	display: flex;
+
+	& > .logo {
+		background: #ea862e;
+		width: 100px;
+		text-align: center;
+		margin: 0 10px;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		&::after {
+			display: block;
+		    content: "";
+		    background: url('../images/discount.svg');
+		    height: 10px;
+		    width: 100px;
+		    position: absolute;
+		    transform: rotate(180deg);
+		    bottom: -10px
+		}
+	}
+
+	& > .content {
+		width: calc(~"100% - 140px");
+		color: #a1a1a1;
+
+		& > .top-bar {
+			padding: 2px;
+			
+			display: flex;
+
+			align-items: center;
+    		justify-content: space-between;
+
+    		& > * {
+    			margin: 0 5px;
+    		}
+
+    		& > .phone {
+    			font-weight: bold;
+    			font-size: 16px;
+    		}
+
+    		border: 0px solid #a1a1a1;
+    		border-bottom-width: 1px;
+		}
+
+		& > nav {
+			display: block;
+			margin: 5px 15px;
+			& > a {
+				color: white !important;
+			}
+		}
+	}
+
+	@media screen and (max-width: 1100px) {
+		.free-shipping {
+			display: none;
+		}
+	}
+
+	@media screen and (max-width: 900px) {
+		.top-bar {
+			justify-content: center !important;
+		}
+		.time-schedule {
+			display: none;
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		right: 280px;
+	}
+}

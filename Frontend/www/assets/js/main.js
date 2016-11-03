@@ -269,8 +269,10 @@ function clearCart() {
 
 function initialiseCart() {
     //Фукнція віпрацьвуватиме при завантаженні сторінки
-    //Тут можна наприклад, зчитати вміст корзини який збережено в Local Storage то показати його
-    //TODO: ...
+    
+    if(localStorage['kma-pizza']) {
+        Cart = JSON.parse(localStorage['kma-pizza'])
+    }
 
     updateCart();
 }
@@ -282,7 +284,9 @@ function getPizzaInCart() {
 
 function updateCart() {
     //Функція викликається при зміні вмісту кошика
-    //Тут можна наприклад показати оновлений кошик на екрані та зберегти вміт кошика в Local Storage
+    
+    localStorage['kma-pizza'] = JSON.stringify(Cart)
+
 
     //Очищаємо старі піци в кошику
     $cart.html("");

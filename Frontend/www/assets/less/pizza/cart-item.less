@@ -1,0 +1,77 @@
+
+.cart-item {
+	position: relative;
+	padding: 25px;
+	padding-top: 10px;
+
+    border-bottom: 1px solid #DDD;
+
+	& > h5 {
+	    font-weight: bold;
+    	font-size: 18px;
+	}
+
+
+	button {
+		border-radius: 50%;
+		width: 34px;
+		height: 34px;
+		&:focus, &:active {
+			outline: none !important;
+		}
+		&.remove {
+			margin-left: 25px;
+		    color: #ec890e;
+		    font-weight: bold;
+		    background: linear-gradient(#dedede -50%, #fafafa);
+		    border: 1px solid #ccc;
+		}
+	    box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.075);
+	}
+
+	.price {
+		width: 70px;
+		font-weight: bold;
+	}
+
+	.label {
+	    background: transparent;
+	    color: black;
+	    font-size: 16px;
+	}
+
+	.size::before {
+	    content: "";
+	    display: inline-block;
+	    background: url('http://localhost:9001/assets/images/size-icon.svg');
+	    background-repeat: no-repeat;
+	    height: 12px;
+	    width: 12px;
+	    position: relative;
+	    top: 1px;
+	}
+
+	.weight::before {
+	    content: "";
+	    display: inline-block;
+	    background: url('http://localhost:9001/assets/images/weight.svg');
+	    background-repeat: no-repeat;
+	    height: 12px;
+	    width: 10px;
+	    position: relative;
+	    top: 1px;
+	    margin-left: 5px;
+	}
+
+	& > img {
+		position: absolute;
+		width: 100px;
+	    right: -50px;
+	    top: 15px;
+	    border-radius: 50%;
+	}
+
+	& > [class^=line] > * {
+		display: inline-block;
+	}
+}

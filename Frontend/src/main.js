@@ -12,10 +12,14 @@ $(function(){
     PizzaMenu.initialiseMenu();
 
     $(".filters > li").click(function() {
-		$this = $(this)
+		var $this = $(this)
 		$this.siblings().removeClass('active')
 		$this.addClass('active')
 		
 		PizzaMenu.filterPizza($this.children('a').html())
+	})
+
+	$("#btn-clear-cart").click(function() {
+		PizzaCart.clearCart()
 	})
 });

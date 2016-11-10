@@ -125,6 +125,8 @@ function updateCart() {
     } else {
         $("#total-sum").css('opacity', 0)
     }
+
+    $("#cart .btn").toggleClass('disabled', Cart.length == 0)
 }
 
 exports.removeFromCart = removeFromCart;

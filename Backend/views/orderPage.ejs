@@ -1,0 +1,43 @@
+<% include common/header.ejs %>
+
+<% var isMainPage = false %>
+<% include common/cart.ejs %>
+
+<div id="order-form">
+  <h3>Контактні дані</h3>
+  <form>
+    <div class="form-group row">
+      <label for="example-text-input" class="col-xs-2 col-form-label">Ім'я</label>
+      <div class="col-xs-10">
+        <input class="form-control" type="text" name="name" placeholder="Ім'я Прізвище">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-text-input" class="col-xs-2 col-form-label">Телефон</label>
+      <div class="col-xs-10">
+        <input class="form-control" type="text" name="name" placeholder="+3801234567">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-text-input" class="col-xs-2 col-form-label">Адреса</label>
+      <div class="col-xs-10">
+        <input class="form-control" type="text" name="name" placeholder="Київ, вул. Спаська 2">
+      </div>
+    </div>
+  </form>
+  <div class="info">
+    <h4>Інформація про замовлення</h4>
+    <div>
+      <b>Приблизний час доставки:</b>
+      <span id="est-delivery-time">невідомий</span>
+    </div>
+    <div>
+      <b>Адреса доставки:</b>
+      <span id="est-delivery-time">невідома</span>
+    </div>
+
+    <button id="order-submit" class="btn btn-warning">Замовити</button>
+  </div>
+</div>
+
+<% include common/footer.ejs %>

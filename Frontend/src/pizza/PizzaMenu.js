@@ -57,7 +57,7 @@ var pizzaCategories = {
 
 function filterPizza(category) {
     //Масив куди потраплять піци які треба показати
-    var pizza_shown = Pizza_List.filter(pizzaCategories[category].filter)
+    var pizza_shown = Pizza_List.getPizzaList().filter(pizzaCategories[category].filter)
 
     var header = $("#content > .header")
     header.children('h5').html(pizzaCategories[category].label)
@@ -69,7 +69,7 @@ function filterPizza(category) {
 
 function initialiseMenu() {
     //Показуємо усі піци
-    showPizzaList(Pizza_List)
+    showPizzaList(Pizza_List.getPizzaList())
 }
 
 exports.filterPizza = filterPizza;

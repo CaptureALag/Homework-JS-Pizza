@@ -1,0 +1,24 @@
+<% include common/header.ejs %>
+
+<% var isMainPage = true %>
+<% include common/cart.ejs %>
+
+<div id="content" class="container">
+    <div class="header">
+        <h5>Усі піци</h5>
+        <div class="badge">8</div>
+    </div>
+    <ul class="nav nav-pills filters">
+      <li role="presentation" class="active"><a href="#">Усі</a></li>
+      <li role="presentation"><a href="#">Мясні</a></li>
+      <li role="presentation"><a href="#">З ананасами</a></li>
+      <li role="presentation"><a href="#">З грибами</a></li>
+      <li role="presentation"><a href="#">З морепродуктами</a></li>
+      <li role="presentation"><a href="#">Вега</a></li>
+    </ul>
+    <div class="row" id="pizza_list">
+
+    </div>
+</div>
+
+<% include common/footer.ejs %>

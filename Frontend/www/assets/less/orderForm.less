@@ -1,0 +1,44 @@
+#order-form {
+	margin-top: 150px;
+	padding-right: 350px;
+	padding-left: 50px;
+
+	display: flex;
+	justify-content: space-around;
+
+	@media screen and (max-width: 1150px) {
+		flex-wrap: wrap;
+	}
+
+	position: relative;
+	& > h3 {
+		position: absolute;
+		top: -60px;
+	}
+
+	& > form {
+		label {
+			margin-top: 5px;
+			min-width: 65px;
+		}
+		input {
+			@media screen and (min-width: 900px) {
+				min-width: 350px;
+			}
+		}
+	}
+
+	& > .info {
+	    box-shadow: rgba(0,0,0,.7) 0px 0px 2px 0px;
+	    border-left: 5px solid orange;
+	    border-radius: 3px;
+	    padding: 30px 10px;
+
+	    position: relative;
+	    #order-submit {
+	    	position: absolute;
+	    	bottom: -45px;
+	    	right: 0;
+	    }
+	}
+} 

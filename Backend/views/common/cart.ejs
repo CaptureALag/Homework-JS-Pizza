@@ -1,0 +1,22 @@
+<div id="cart">
+    <div class="header">
+        <h4>Замовлення</h4>
+        <div class="badge">0</div>
+        <a id="btn-clear-cart" href="#">Очистити замовлення</a>
+    </div>
+    <div class="list">
+        <p class="on-empty">
+            Пусто в холодильнику?<br>
+            Замовте піцу!
+        </p>
+    </div>
+    <div class="button-container">
+        <h5 id="total-sum" style="opacity: 0">abcdef</h5>
+
+        <% if(isMainPage) { %>
+            <a href="order.html" class="btn btn-warning disabled">Замовити</a>
+        <% } else { %>
+            <a href="/" class="btn btn-default disabled">Редагувати замовлення</a>
+        <% } %>
+    </div>
+</div>

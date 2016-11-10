@@ -7,22 +7,19 @@
   <h3>Контактні дані</h3>
   <form>
     <div class="form-group row">
-      <label for="example-text-input" class="col-xs-2 col-form-label">Ім'я</label>
-      <div class="col-xs-10">
-        <input class="form-control" type="text" name="name" placeholder="Ім'я Прізвище">
-      </div>
+      <label for="name-input" class="col-xs-2 col-form-label">Ім'я</label>
+      <input class="form-control" type="text" id="name-input" name="name" placeholder="Ім'я Прізвище">
+      <div class="form-control-feedback">Ай! Введи лише своє ім'я. Без цифр. </div>
     </div>
     <div class="form-group row">
-      <label for="example-text-input" class="col-xs-2 col-form-label">Телефон</label>
-      <div class="col-xs-10">
-        <input class="form-control" type="text" name="name" placeholder="+3801234567">
-      </div>
+      <label for="phone-input" class="col-xs-2 col-form-label">Телефон</label>
+      <input class="form-control" type="text" id="phone-input" name="phone" placeholder="+3801234567">
+      <div class="form-control-feedback">Ай! Введи свій телефон у форматі +380... або 0... </div>
     </div>
     <div class="form-group row">
-      <label for="example-text-input" class="col-xs-2 col-form-label">Адреса</label>
-      <div class="col-xs-10">
-        <input class="form-control" type="text" name="name" placeholder="Київ, вул. Спаська 2">
-      </div>
+      <label for="address-input" class="col-xs-2 col-form-label">Адреса</label>
+      <input class="form-control" type="text" id="address-input" name="address" placeholder="Київ, вул. Спаська 2">
+      <div class="form-control-feedback">Ай! Введи свою адресу </div>
     </div>
   </form>
   <div class="info">
@@ -41,3 +38,50 @@
 </div>
 
 <% include common/footer.ejs %>
+
+<script>
+  function validate(elem) {
+    var $this = $(elem)
+    console.log($this)
+    switch($this.attr('name')) {
+    case 'name':
+      return /^[^\d]+$/.test($this.val())
+    case 'phone':
+      return /(^\+?38\d{10}$)|(^\d{10}$)/.test($this.val())
+    case 'address':
+      return $this.val().length
+    }
+  }
+
+  $(function() {
+    $('form input').keyup(function() {
+      console.log(validate(this))
+      if(validate(this)) {
+        $(this).closest('.form-group').removeClass('has-error')
+      }
+    })
+
+    $('form input').blur(function() {
+      console.log(validate(this))
+      if(!validate(this)) {
+        $(this).closest('.form-group').addClass('has-error')
+      }
+    })
+
+    $("#order-submit").click(function() {
+      var inputs = $("input[name]")
+      for(var i = 0; i < 3; i++) {
+        $(inputs[i]).closest('.form-group').toggleClass('has-error', !validate(inputs[i]))
+      }
+
+      if($('.has-error').length == 0) {
+        $.post("/api/create-order/", $('form').serialize(), function(data) {
+          if(data.success) {
+            $("#order-submit").attr('disabled', true).html("Це успіх")
+          }
+        })
+      }
+    })
+  })
+
+</script>

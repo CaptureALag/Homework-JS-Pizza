@@ -7,7 +7,7 @@
 	justify-content: space-around;
 
 	@media screen and (max-width: 1150px) {
-		flex-wrap: wrap;
+		flex-direction: column;
 	}
 
 	position: relative;
@@ -17,6 +17,13 @@
 	}
 
 	& > form {
+		.form-group.has-error {
+			.form-control-feedback {
+				display: block;
+			    position: initial;
+    			width: unset;
+			}
+		}
 		label {
 			margin-top: 5px;
 			min-width: 65px;
@@ -33,12 +40,22 @@
 	    border-left: 5px solid orange;
 	    border-radius: 3px;
 	    padding: 30px 10px;
+	    height: 200px;
+
+	    & > h4 {
+	    	margin-bottom: 40px;
+	    }
+
+	    & > div {
+	    	margin-bottom: 20px;
+	    }
 
 	    position: relative;
 	    #order-submit {
 	    	position: absolute;
 	    	bottom: -45px;
 	    	right: 0;
+    		width: 200px;
 	    }
 	}
 } 

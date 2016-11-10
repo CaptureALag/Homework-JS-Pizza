@@ -30,7 +30,7 @@
     </div>
     <div>
       <b>Адреса доставки:</b>
-      <span id="est-delivery-time">невідома</span>
+      <span id="delivery-address">невідома</span>
     </div>
 
     <button id="order-submit" class="btn btn-warning">Замовити</button>
@@ -55,17 +55,16 @@
 
   $(function() {
     $('form input').keyup(function() {
-      console.log(validate(this))
       if(validate(this)) {
         $(this).closest('.form-group').removeClass('has-error')
       }
     })
 
     $('form input').blur(function() {
-      console.log(validate(this))
       if(!validate(this)) {
         $(this).closest('.form-group').addClass('has-error')
       }
+      $("#delivery-address").html($("[name=address]").val())
     })
 
     $("#order-submit").click(function() {

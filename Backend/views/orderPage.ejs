@@ -68,21 +68,6 @@
         $(this).closest('.form-group').addClass('has-error')
       }
     })
-
-    $("#order-submit").click(function() {
-      var inputs = $("input[name]")
-      for(var i = 0; i < 3; i++) {
-        $(inputs[i]).closest('.form-group').toggleClass('has-error', !validate(inputs[i]))
-      }
-
-      if($('.has-error').length == 0) {
-        $.post("/api/create-order/", $('form').serialize(), function(data) {
-          if(data.success) {
-            $("#order-submit").attr('disabled', true).html("Це успіх")
-          }
-        })
-      }
-    })
   })
 
 </script>
@@ -125,6 +110,7 @@
               if(!err)  {
                 $("#delivery-address").html(address)
                 $("#address-input").val(address)
+                $("#address-input").closest('.form-group').removeClass('has-error')
                 if(!err) {
                     calculateRoute(ourPoint, coordinates, function(err, durationData) {
                       if(!err) {
@@ -142,6 +128,20 @@
           })
         });
     });
+
+    $('#address-input').blur(function() {
+      var address = $(this).val()
+
+      geocodeAddress(address, function(err, latLng) {
+        calculateRoute(ourPoint, latLng, function(err, durationData) {
+          if(!err) {
+            $("#est-delivery-time").html(durationData.duration.text)
+          } else {
+            console.log(err)
+          }
+        })
+      })
+    })
   }
   
   function geocodeLatLng(latlng, callback){
@@ -202,4 +202,52 @@
   }
 
   google.maps.event.addDomListener(window,   'load',  initialize);
+</script>
+
+<div  id="liqpay"></div>
+
+<script src="//static.liqpay.com/libjs/checkout.js"></script>
+
+<script>
+  $(function() {
+    $("#order-submit").click(function() {
+
+      if(JSON.parse(localStorage['kma-pizza']).length == 0) {
+        alert("Ауч! Кошик пустий")
+        return;
+      }
+        
+      var inputs = $("input[name]")
+      for(var i = 0; i < 3; i++) {
+        $(inputs[i]).closest('.form-group').toggleClass('has-error', !validate(inputs[i]))
+      }
+
+      if($('.has-error').length == 0) {
+
+        var req = $('form').serialize() + "&cart=" + encodeURI(localStorage['kma-pizza'])
+
+        $.post("/api/create-order/", req, function(res) {
+          if(res.success) {
+            //$("#order-submit").attr('disabled', true).html("Це успіх")
+            // alert(JSON.stringify(res))
+            LiqPayCheckout.init({
+              data: res.data,
+              signature: res.signature,
+              embedTo: "#liqpay",
+              mode: "popup" //  embed ||  popup
+            }).on("liqpay.callback",  function(data){
+              console.log(data.status);
+              console.log(data);
+            }).on("liqpay.ready", function(data){
+              //  ready
+            }).on("liqpay.close", function(data){
+              //  close
+            });
+          } else {
+            alert("Failed to create order")
+          }
+        })
+      }
+    })
+  })
 </script>
